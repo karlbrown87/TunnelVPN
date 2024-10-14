@@ -13,8 +13,8 @@ To install and configure the VPN server, follow these steps:
 
 1. Clone the repository on your server:
     ```sh
-    git clone <REPOSITORY_URL>
-    cd <REPOSITORY_NAME>
+    git clone https://github.com/karlbrown87/TunnelVPN.git
+    cd TunnelVPN*
     ```
 
 2. Run the `setup_tunnel_vpn.sh` script:
@@ -27,12 +27,6 @@ To install and configure the VPN server, follow these steps:
 ## Client VPN Installation and Configuration
 
 To install and configure a VPN client, follow these steps:
-
-1. Clone the repository on your client:
-    ```sh
-    git clone <REPOSITORY_URL>
-    cd <REPOSITORY_NAME>
-    ```
 
 2. Run the `setup_clients.sh` script:
     ```sh
