@@ -652,4 +652,6 @@ fi
 # Comment the redirect-gateway line to prevent traffic from passing through TunnelVPN
 if grep -q 'push "redirect-gateway def1 bypass-dhcp"' /etc/openvpn/server/server.conf; then
     sed -i 's/^push "redirect-gateway def1 bypass-dhcp"/# &/' /etc/openvpn/server/server.conf
+    # Restart TunnelVPN server services
+    systemctl restart openvpn-server@server.service
 fi
