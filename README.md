@@ -4,8 +4,8 @@ This project includes scripts to set up a VPN server and configure clients to co
 
 ## Contents
 
-- **[setup_tunnel_vpn.sh](path/to/setup_tunnel_vpn.sh)**: Script to install and configure the VPN server.
-- **[setup_clients.sh](path/to/setup_clients.sh)**: Script to install and configure the VPN clients.
+- **[setup_tunnel_vpn.sh](setup_tunnel_vpn.sh)**: Script to install and configure the VPN server.
+- **[setup_clients.sh](setup_clients.sh)**: Script to install and configure the VPN clients.
 
 ## Server VPN Installation and Configuration
 
