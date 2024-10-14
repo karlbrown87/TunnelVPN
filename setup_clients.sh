@@ -10,10 +10,9 @@ sudo apt-get update
 sudo apt-get install -y openvpn
 
 # Prompt for client.ovpn configuration
-echo "Please enter the configuration for client.conf (end with EOF):"
+echo "Please enter the configuration for client.conf (end with Ctrl + D):"
 CLIENT_OVPN_CONFIG=""
 while IFS= read -r line; do
-    [[ $line == "EOF" ]] && break
     CLIENT_OVPN_CONFIG+="$line"$'\n'
 done
 
