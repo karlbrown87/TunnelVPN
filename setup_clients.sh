@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Define escape sequences for colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NO_COLOR='\033[0m'
+CLEAR_LINE='\r\033[K'
+
 # Install figlet
 if ! command -v figlet &> /dev/null
 then
@@ -8,28 +15,59 @@ then
     sudo apt-get install -y figlet
 fi
 
-# Variables
-CLIENT_NAME="client"
-CONFIG_DIR="/etc/openvpn"
-CLIENT_CONFIG="${CONFIG_DIR}/${CLIENT_NAME}.conf"
+#Install TunnelVPN
+if ! command -v openvpn &> /dev/null
+then
+    echo "openvpn not found, installing..."
+    sudo apt-get update
+    sudo apt-get install -y openvpn
+fi
 
-# Update and install OpenVPN
-sudo apt-get update
-sudo apt-get install -y openvpn
+printf "${CLEAR_LINE}[Initializing]🎉${GREEN} TunnelVPN for Clients!${NO_COLOR}\n"
 
-clear
+# Function to print error messages
+print_error() {
+    printf "${CLEAR_LINE}💀${RED}   $1${NO_COLOR}\n"
+}
 
- if command -v figlet &> /dev/null
+# Function to print success messages
+print_success() {
+    printf "${CLEAR_LINE}🎉${GREEN}   $1${NO_COLOR}\n"
+}
+
+# Check 1: Verify if user is root
+printf "[1/2]🔎   Checking if user is root..."
+if ! (( $(id -u) == 0 )); then
+    print_error "You must have ROOT access to continue with installation"
+    exit 1
+fi
+
+# Check 2: Verify if there is internet access
+printf "[2/2]🔎   Checking for internet access..."
+if ! ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
+    print_error "You must have INTERNET access to continue with installation"
+    exit 1
+fi
+
+print_success "All checks passed successfully!"
+
+echo
+
+if command -v figlet &> /dev/null
     then
         figlet "TunnelVPN"
     else
         echo "..."
     fi
 
-# Prompt for client.ovpn configuration
 echo
-echo -e "\n\033[1;32mPlease enter the configuration for client.conf (end with Ctrl + D):\033[0m"
+echo -e "\n\033[1;32mPlease enter the configuration for client.conf (end with Ctrl + D):\033[0m "
 echo
+
+# Variables
+CLIENT_NAME="client"
+CONFIG_DIR="/etc/openvpn"
+CLIENT_CONFIG="${CONFIG_DIR}/${CLIENT_NAME}.conf"
 
 CLIENT_OVPN_CONFIG=""
 while IFS= read -r line; do
