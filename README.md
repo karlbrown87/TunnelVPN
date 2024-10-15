@@ -42,7 +42,7 @@ To install and configure a VPN client, follow these steps:
 
 For more information, refer to the documentation of each script or contact the system administrator.
 
-------#------
+---
 
 # Documentation for `setup_tunnel_vpn.sh` Script
 
@@ -66,11 +66,7 @@ This Bash script sets up a TunnelVPN server. Below are the steps and checks it p
    - **Check 2**: Verifies if there is internet access by pinging `8.8.8.8`. If not, it prints an error message and exits.
 
 6. **Static IP Configuration**:
-   - Creates the `ipp.txt` file in 
-
-openvpn
-
- and adds an initial IP if it doesn't exist.
+   - Creates the `ipp.txt` file in `/etc/openvpn/` and adds an initial IP if it doesn't exist.
    - Prompts for the client's name and assigns a static IP on the internal network.
 
 7. **Operating System Detection**:
@@ -92,7 +88,8 @@ openvpn
 
 ---
 
-This script ensures that the necessary environment for installing and configuring the TunnelVPN server is properly set up before proceeding with the installation. It also modifies the configuration to avoid routing traffic from connected networks through the TunnelVPN server.
+This script ensures that the necessary environment for installing and configuring the TunnelVPN server is properly set up before proceeding with the installation. 
+It also modifies the configuration to avoid routing traffic from connected networks through the TunnelVPN server.
 
 
 
