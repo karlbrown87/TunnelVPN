@@ -40,7 +40,11 @@ This Bash script sets up a TunnelVPN server. Below are the steps and checks it p
 11. **Remove `redirect-gateway` Route**:
     - Comments out the `redirect-gateway def1 bypass-dhcp` line in `server.conf` to prevent traffic from connected networks from passing through the TunnelVPN server.
 
----
+### Completion Message
+Prints a completion message indicating the location of the configuration file `/root/*.ovpn`.
+
+## Usage
+Run the script with root privileges to ensure proper installation and configuration.
 
 This script ensures that the necessary environment for installing and configuring the TunnelVPN server is properly set up before proceeding with the installation. 
 It also modifies the configuration to avoid routing traffic from connected networks through the TunnelVPN server.
