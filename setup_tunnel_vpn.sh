@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Define escape sequences for colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NO_COLOR='\033[0m'
+CLEAR_LINE='\r\033[K'
+
 # Install figlet
 if ! command -v figlet &> /dev/null
 then
@@ -7,6 +14,36 @@ then
     sudo apt-get update
     sudo apt-get install -y figlet
 fi
+
+printf "${CLEAR_LINE}[Initializing]🎉${GREEN} TunnelVPN for Clients!${NO_COLOR}\n"
+
+# Function to print error messages
+print_error() {
+    printf "${CLEAR_LINE}💀${RED}   $1${NO_COLOR}\n"
+}
+
+# Function to print success messages
+print_success() {
+    printf "${CLEAR_LINE}🎉${GREEN}   $1${NO_COLOR}\n"
+}
+
+# Check 1: Verify if user is root
+printf "[1/2]🔎   Checking if user is root..."
+if ! (( $(id -u) == 0 )); then
+    print_error "You must have ROOT access to continue with installation"
+    exit 1
+fi
+
+# Check 2: Verify if there is internet access
+printf "[2/2]🔎   Checking for internet access..."
+if ! ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
+    print_error "You must have INTERNET access to continue with installation"
+    exit 1
+fi
+
+print_success "All checks passed successfully!"
+
+echo
 
 # Path to the ipp.txt file
 IPP_FILE="/etc/openvpn/ipp.txt"
@@ -193,7 +230,7 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
     else
         echo "..."
     fi
-    
+ #   echo -e "\n\033[1;32mWelcome to UTMStack TunnelVPN installer!.\033[0m" 
     echo
 	# If system has a single IPv4, it is selected automatically. Else, ask the user
 	if [[ $(ip -4 addr | grep inet | grep -vEc '127(\.[0-9]{1,3}){3}') -eq 1 ]]; then
@@ -652,6 +689,6 @@ fi
 # Comment the redirect-gateway line to prevent traffic from passing through TunnelVPN
 if grep -q 'push "redirect-gateway def1 bypass-dhcp"' /etc/openvpn/server/server.conf; then
     sed -i 's/^push "redirect-gateway def1 bypass-dhcp"/# &/' /etc/openvpn/server/server.conf
-    # Restart TunnelVPN server services
+    # Restart OpenVPN server services
     systemctl restart openvpn-server@server.service
 fi
