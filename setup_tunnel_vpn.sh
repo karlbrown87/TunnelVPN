@@ -15,7 +15,7 @@ then
     sudo apt-get install -y figlet
 fi
 
-printf "${CLEAR_LINE}[Initializing]🎉${GREEN} TunnelVPN for Clients!${NO_COLOR}\n"
+printf "${CLEAR_LINE}[Initializing]🎉${GREEN} TunnelVPN Server!${NO_COLOR}\n"
 
 # Function to print error messages
 print_error() {
