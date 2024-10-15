@@ -27,7 +27,7 @@ This Bash script sets up a TunnelVPN server. Below are the steps and checks it p
    - Detects the Linux distribution and checks if it is supported (Ubuntu, Debian, CentOS, Fedora).
 
 8. **TunnelVPN Server Configuration**:
-   - Configures the OpenVPN server, including generating certificates and keys.
+   - Configures the TunnelVPN server, including generating certificates and keys.
    - Configures the firewall and iptables rules.
    - Enables IP forwarding and configures the server to use specific DNS servers.
 
