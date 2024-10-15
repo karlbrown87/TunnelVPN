@@ -1,7 +1,8 @@
 # Documentation setup_clients.sh 
 
 ## Overview
-This script automates the setup and configuration of a TunnelVPN client on a Linux system. It ensures the necessary software is installed, verifies system prerequisites, and configures the OpenVPN client.
+This script automates the setup and configuration of a TunnelVPN client on a Linux system. 
+It ensures the necessary software is installed, verifies system prerequisites, and configures the TunnelVPN client.
 
 ## Script Breakdown
 
@@ -45,7 +46,7 @@ Creates the client configuration file:
 - Creates the directory `/etc/openvpn` if it doesn't exist.
 - Writes the user-provided configuration to `/etc/openvpn/client.conf`.
 
-### OpenVPN Service Management
+### TunnelVPN Service Management
 Enables and starts the OpenVPN client service:
 - Enables the service `openvpn@client`.
 - Starts the service `openvpn@client`.
@@ -55,5 +56,6 @@ Prints a completion message indicating the location of the configuration file.
 
 ## Usage
 Run the script with root privileges to ensure proper installation and configuration:
+
 ```bash
 sudo [setup_clients.sh](http://_vscodecontentref_/#%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22%2FUsers%2Fcarlosg%2FLibrary%2FMobile%20Documents%2Fcom~apple~CloudDocs%2FDownload%2FmyPythonProjects%2FPROJECTS%2FTunnelVPN%2Fsetup_clients.sh%22%2C%22external%22%3A%22file%3A%2F%2F%2FUsers%2Fcarlosg%2FLibrary%2FMobile%2520Documents%2Fcom~apple~CloudDocs%2FDownload%2FmyPythonProjects%2FPROJECTS%2FTunnelVPN%2Fsetup_clients.sh%22%2C%22path%22%3A%22%2FUsers%2Fcarlosg%2FLibrary%2FMobile%20Documents%2Fcom~apple~CloudDocs%2FDownload%2FmyPythonProjects%2FPROJECTS%2FTunnelVPN%2Fsetup_clients.sh%22%2C%22scheme%22%3A%22file%22%7D%7D)
